@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://mpnh562xutb8"]
+
+[ext_resource type="PackedScene" uid="uid://d1yuv7shwelym" path="res://Scenes/Terrain/Test/test_terrain.tscn" id="1_4cayv"]
+[ext_resource type="PackedScene" uid="uid://ddoohp2rrqa6c" path="res://Scenes/Characters/characterBase.tscn" id="2_gucee"]
+
+[node name="TestLevel" type="Node3D"]
+
+[node name="Terrain" parent="." instance=ExtResource("1_4cayv")]
+
+[node name="Character" parent="." instance=ExtResource("2_gucee")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.49491, 4.2528)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.161604, 0.678056, 0.717024, 0, -0.726575, 0.687088, 0.986856, 0.111036, 0.117417, 0, 0, 0)

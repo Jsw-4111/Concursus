@@ -1,0 +1,106 @@
+[gd_scene load_steps=6 format=3 uid="uid://bgxdjwughq855"]
+
+[ext_resource type="Theme" uid="uid://da4hse2fb02cq" path="res://Assets/UI/Text/Heading1.tres" id="1_m7ry1"]
+[ext_resource type="Theme" uid="uid://dwp1allv30iaq" path="res://Assets/UI/Text/Heading2.tres" id="2_jp6g5"]
+[ext_resource type="Theme" uid="uid://c0ra372pf0tm0" path="res://Assets/UI/Text/Subtext1.tres" id="3_7vcp6"]
+[ext_resource type="Script" path="res://src/UI/Button/LabelButton.gd" id="3_vt4tx"]
+[ext_resource type="Script" path="res://src/UI/Main Menu/MainMenuNavigator.gd" id="4_0csst"]
+
+[node name="Control" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 30
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="MainMenuLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("1_m7ry1")
+text = "Main Menu"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="OptionsBox" type="VBoxContainer" parent="HBoxContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 3
+alignment = 1
+
+[node name="ContinueButton" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/OptionsBox"]
+clip_contents = false
+layout_mode = 2
+focus_neighbor_top = NodePath("../SettingsButton")
+focus_neighbor_bottom = NodePath("../NewGameButton")
+focus_next = NodePath("../NewGameButton")
+focus_previous = NodePath("../SettingsButton")
+theme = ExtResource("2_jp6g5")
+text = "Continue"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("3_vt4tx")
+
+[node name="onClickHandler" type="Node" parent="HBoxContainer/VBoxContainer/OptionsBox/ContinueButton"]
+script = ExtResource("4_0csst")
+
+[node name="NewGameButton" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/OptionsBox"]
+clip_contents = false
+layout_mode = 2
+focus_neighbor_top = NodePath("../ContinueButton")
+focus_neighbor_bottom = NodePath("../SettingsButton")
+focus_next = NodePath("../SettingsButton")
+focus_previous = NodePath("../ContinueButton")
+theme = ExtResource("2_jp6g5")
+text = "New Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("3_vt4tx")
+
+[node name="onClickHandler" type="Node" parent="HBoxContainer/VBoxContainer/OptionsBox/NewGameButton"]
+
+[node name="SettingsButton" type="RichTextLabel" parent="HBoxContainer/VBoxContainer/OptionsBox"]
+clip_contents = false
+layout_mode = 2
+focus_neighbor_top = NodePath("../NewGameButton")
+focus_neighbor_bottom = NodePath("../ContinueButton")
+focus_next = NodePath("../ContinueButton")
+focus_previous = NodePath("../NewGameButton")
+theme = ExtResource("2_jp6g5")
+text = "Settings"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+script = ExtResource("3_vt4tx")
+
+[node name="onClickHandler" type="Node" parent="HBoxContainer/VBoxContainer/OptionsBox/SettingsButton"]
+
+[node name="VersionLabel" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+theme = ExtResource("3_7vcp6")
+text = "Ver 0.0.1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="DevelopedBy" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+clip_contents = false
+layout_mode = 2
+text = "Developed by John Wu"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
