@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://ddoohp2rrqa6c"]
+[gd_scene load_steps=6 format=3 uid="uid://ddoohp2rrqa6c"]
 
 [ext_resource type="Script" path="res://src/Character/characterBase.gd" id="1_25a6s"]
 [ext_resource type="Script" path="res://src/Character/Input/CharacterInputHandler.gd" id="2_2ehv8"]
+[ext_resource type="Script" path="res://src/Character/Navigation/Navigator.gd" id="3_bvu00"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_kynci"]
 height = 1.5
@@ -25,3 +26,6 @@ transform = Transform3D(1, 0, 0, 0, 0.707107, 0.707107, 0, -0.707107, 0.707107, 
 
 [node name="InputHandler" type="Node" parent="."]
 script = ExtResource("2_2ehv8")
+
+[node name="Navigator" type="Node3D" parent="InputHandler"]
+script = ExtResource("3_bvu00")

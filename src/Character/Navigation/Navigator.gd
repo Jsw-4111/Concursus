@@ -1,8 +1,8 @@
-extends StaticBody3D
+extends Node3D
 
-class_name TerrainNavigator
+class_name Navigator
 
-@onready var playerCamera := $"../Character/Camera3D" as Camera3D
+@onready var playerCamera := $"../../Camera3D" as Camera3D
 
 signal terrain_Clicked(pos: Vector3)
 func _input(event: InputEvent) -> void:

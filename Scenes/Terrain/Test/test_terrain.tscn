@@ -1,6 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1yuv7shwelym"]
-
-[ext_resource type="Script" path="res://src/Character/Navigation/TerrainNavigator.gd" id="1_ieipd"]
+[gd_scene load_steps=6 format=3 uid="uid://d1yuv7shwelym"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_y5eb2"]
 vertices = PackedVector3Array(-0.75, 1, -1, 0.25, 1, -1, 0.25, 1, -24.5, -24.5, 1, 0, -1, 1, 0, -24.5, 1, -24.5, 1, 1, -1, 1.25, 1, 0, 24.5, 1, 0, 24.5, 1, -24.5, 0, 1, 24.5, 0, 1, 1.25, -1, 1, 1, -24.5, 1, 24.5, 0.75, 1, 1.25, 24.5, 1, 24.5)
@@ -19,7 +17,6 @@ size = Vector3(50, 1, 50)
 size = Vector3(1, 2.5, 1)
 
 [node name="Terrain" type="StaticBody3D"]
-script = ExtResource("1_ieipd")
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="."]
 navigation_mesh = SubResource("NavigationMesh_y5eb2")
