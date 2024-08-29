@@ -1,3 +1,5 @@
+extends Node
+
 var gameState = GameStates.paused
 enum GameStates {
 	unpaused,

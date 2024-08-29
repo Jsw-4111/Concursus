@@ -2,10 +2,10 @@ extends CharacterBody3D
 
 const SPEED = 5.0
 
-@onready var nav_agent := $NavigationAgent3D as NavigationAgent3D
+@export var nav_agent: NavigationAgent3D
 
 func _ready():
-	var inputHandler := $"InputHandler" as CharacterInputHandler
+	var inputHandler := $"CharacterInputHandler" as CharacterInputHandler
 	inputHandler.move_player.connect(setTargetPosition)
 
 func _physics_process(delta: float) -> void:

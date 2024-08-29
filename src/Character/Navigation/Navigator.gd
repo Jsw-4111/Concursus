@@ -2,7 +2,7 @@ extends Node3D
 
 class_name Navigator
 
-@onready var playerCamera := $"../../Camera3D" as Camera3D
+@export var playerCamera: Camera3D
 
 signal terrain_Clicked(pos: Vector3)
 func navigateTo(clickedPosition: Vector2):

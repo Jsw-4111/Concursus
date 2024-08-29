@@ -18,5 +18,4 @@ func stoppedHovering():
 
 signal was_clicked
 func onClick():
-	print("Emitting was_clicked signal")
 	was_clicked.emit()
