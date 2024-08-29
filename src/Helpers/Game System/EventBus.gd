@@ -1,3 +1,5 @@
+extends Node
+
 # - Game System
 signal start_combat
 signal exit_combat
