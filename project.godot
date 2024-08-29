@@ -19,3 +19,11 @@ config/icon="res://icon.svg"
 
 EventBus="*res://src/Helpers/Game System/EventBus.gd"
 GameStateHandler="*res://src/Helpers/Game System/GameStateHandler.gd"
+
+[layer_names]
+
+3d_physics/layer_1="Terrain"
+3d_physics/layer_2="Player"
+3d_physics/layer_3="Allies"
+3d_physics/layer_4="Neutrals"
+3d_physics/layer_5="Enemies"
