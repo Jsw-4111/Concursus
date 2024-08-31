@@ -2,24 +2,23 @@ extends Node
 class_name CharacterInputMapper
 
 func _input(event: InputEvent) -> void:
+	if not event.is_pressed():
+		return
 	if eventIsRightClick(event):
 		right_click_event.emit(event.position)
-	if eventIsPlayerAction(event):
-		player_action_event.emit(0)
+	elif InputMapConvenience.isPlayerAbility(event):
+		player_ability_event.emit(InputMapConvenience.getEventIndex(event))
+	elif InputMapConvenience.isPlayerItem(event):
+		player_item_event.emit(InputMapConvenience.getEventIndex(event))
+		
 
 signal right_click_event(position: Vector2)
 func eventIsRightClick(event: InputEvent) -> bool:
-	if (event is InputEventMouseButton and 
-		event.button_index == MOUSE_BUTTON_RIGHT and 
-		event.pressed):
-		return true
-	return false
+	return (event is InputEventMouseButton and 
+			event.button_index == MOUSE_BUTTON_RIGHT)
 
-signal player_action_event(index: int)
+signal player_item_event(index: int)
+signal player_ability_event(index: int)
 func eventIsPlayerAction(event: InputEvent) -> bool:
-	var eventAction = event as InputEventAction
-	if not eventAction:
-		return false
-	if InputMapConvenience.getPlayerActions().has(eventAction.action):
-		return true
-	return false
+	return (event.is_action_type() and 
+			InputMapConvenience.isPlayerAction(event))
