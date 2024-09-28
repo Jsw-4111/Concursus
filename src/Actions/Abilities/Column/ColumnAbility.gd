@@ -19,5 +19,6 @@ static func create() -> ColumnAbility:
 func getPreviewAnimation() -> MeshInstance3D:
 	var mesh := MeshInstance3D.new()
 	mesh.set_mesh(CylinderMesh.new())
+	mesh.set_surface_override_material(0, preload("res://Assets/Materials/previewMaterial.tres"))
 	
 	return mesh
