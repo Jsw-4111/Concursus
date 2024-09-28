@@ -3,10 +3,15 @@ extends CharacterBody3D
 const SPEED = 5.0
 
 @export var nav_agent: NavigationAgent3D
+@export var camera: Camera3D
+
+var preview: ActionPreviewer
 
 func _ready():
 	var inputHandler := $"CharacterInputHandler" as CharacterInputHandler
 	inputHandler.move_player.connect(setTargetPosition)
+	inputHandler.activate_player_ability.connect(activateAbility)
+	inputHandler.cancelAbility.connect(cancelAbility)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -25,3 +30,27 @@ func _physics_process(delta: float) -> void:
 
 func setTargetPosition(target: Vector3):
 	nav_agent.set_target_position(target)
+
+var currentAbility: int = 0
+func activateAbility(index: int):
+	print("Received ability index ", index)
+	if preview:
+		return
+	print("Creating ability preview")
+	match index:
+		1: # Column
+			currentAbility = index
+			preview = ActionPreviewer.createPreviewer(ColumnAbility.new(), camera)
+	add_child(preview)
+
+func cancelAbility():
+	currentAbility = 0
+	remove_child(preview)
+	preview.queue_free()
+	preview = null
+
+func confirmAbility():
+	currentAbility = 0
+	remove_child(preview)
+	preview.queue_free()
+	preview = null

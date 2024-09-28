@@ -6,6 +6,8 @@ func _input(event: InputEvent) -> void:
 		return
 	if eventIsRightClick(event):
 		right_click_event.emit(event.position)
+	elif eventIsLeftClick(event):
+		left_click_event.emit(event.position)
 	elif InputMapConvenience.isPlayerAbility(event):
 		player_ability_event.emit(InputMapConvenience.getEventIndex(event))
 	elif InputMapConvenience.isPlayerItem(event):
@@ -16,6 +18,11 @@ signal right_click_event(position: Vector2)
 func eventIsRightClick(event: InputEvent) -> bool:
 	return (event is InputEventMouseButton and 
 			event.button_index == MOUSE_BUTTON_RIGHT)
+
+signal left_click_event(position: Vector2)
+func eventIsLeftClick(event: InputEvent) -> bool:
+	return (event is InputEventMouseButton and 
+			event.button_index == MOUSE_BUTTON_LEFT)
 
 signal player_item_event(index: int)
 signal player_ability_event(index: int)
