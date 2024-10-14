@@ -13,10 +13,16 @@ func _populatePlayerActions():
 	print(_playerActions.keys())
 
 func isPlayerItem(event: InputEvent) -> bool:
-	return _playerActions.get(event.as_text()).begins_with("Player_Item_")
+	var string = _playerActions.get(event.as_text())
+	if string:
+		return string.begins_with("Player_Item_")
+	return false 
 
 func isPlayerAbility(event: InputEvent) -> bool:
-	return _playerActions.get(event.as_text()).begins_with("Player_Ability_")
+	var string = _playerActions.get(event.as_text())
+	if string:
+		return string.begins_with("Player_Ability_")
+	return false
 
 func getEventIndex(event: InputEvent) -> int:
 	return _playerActions.get(event.as_text()).split("_")[2].to_int()
