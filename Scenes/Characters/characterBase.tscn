@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://ddoohp2rrqa6c"]
+[gd_scene load_steps=8 format=3 uid="uid://ddoohp2rrqa6c"]
 
 [ext_resource type="Script" path="res://src/Character/CharacterBase.gd" id="1_25a6s"]
 [ext_resource type="Script" path="res://src/Character/Input/CharacterInputHandler.gd" id="2_2ehv8"]
 [ext_resource type="Script" path="res://src/Character/Navigation/Navigator.gd" id="3_bvu00"]
 [ext_resource type="Script" path="res://src/Character/Input/CharacterInputMapper.gd" id="4_y5yvw"]
+[ext_resource type="Script" path="res://src/Actions/ActionQueue.gd" id="5_gjhod"]
 
 [sub_resource type="CylinderMesh" id="CylinderMesh_kynci"]
 height = 1.5
@@ -40,3 +41,6 @@ playerCamera = NodePath("../../Camera3D")
 
 [node name="CharacterInputMapper" type="Node" parent="."]
 script = ExtResource("4_y5yvw")
+
+[node name="ActionQueue" type="Node" parent="."]
+script = ExtResource("5_gjhod")
