@@ -1,4 +1,4 @@
-extends ActionBase
+extends AbilityBase
 class_name ColumnAbility
 
 # Called when the node enters the scene tree for the first time.
