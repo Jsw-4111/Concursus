@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-const SPEED = 5.0
+const SPEED = 5
 
 @export var nav_agent: NavigationAgent3D
 @export var camera: Camera3D
@@ -14,18 +14,16 @@ func _ready():
 	inputHandler.cancelAbility.connect(cancelAbility)
 
 func _physics_process(delta: float) -> void:
-	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 	
 	var direction: Vector3 = transform.origin.direction_to(nav_agent.get_next_path_position())
+	direction.y = 0
 	if direction and not nav_agent.is_navigation_finished():
-		velocity.x = direction.x * SPEED
-		velocity.z = direction.z * SPEED
+		velocity = velocity.lerp(direction * SPEED, SPEED/2 * delta)
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.z = move_toward(velocity.z, 0, SPEED)
-	
+		velocity.x = 0
+		velocity.z = 0
 	move_and_slide()
 
 func setTargetPosition(target: Vector3):
@@ -33,24 +31,28 @@ func setTargetPosition(target: Vector3):
 
 var currentAbility: int = 0
 func activateAbility(index: int):
-	print("Received ability index ", index)
 	if preview:
 		return
-	print("Creating ability preview")
 	match index:
 		1: # Column
 			currentAbility = index
 			preview = ActionPreviewer.createPreviewer(ColumnAbility.new(), camera)
-	add_child(preview)
+			addPreview(preview)
 
 func cancelAbility():
 	currentAbility = 0
-	remove_child(preview)
-	preview.queue_free()
+	if (preview):
+		remove_child(preview)
+		preview.queue_free()
+	
+	set_preview_state.emit(false)
 	preview = null
 
 func confirmAbility():
-	currentAbility = 0
-	remove_child(preview)
-	preview.queue_free()
-	preview = null
+	cancelAbility()
+
+signal set_preview_state(to: bool)
+func addPreview(preview: ActionPreviewer):
+	add_child(preview)
+	set_preview_state.emit(true)
+	

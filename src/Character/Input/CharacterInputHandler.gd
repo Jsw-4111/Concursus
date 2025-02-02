@@ -11,6 +11,8 @@ func _ready():
 	inputMapper.right_click_event.connect(handleRightClick)
 	inputMapper.left_click_event.connect(handleLeftClick)
 	inputMapper.player_ability_event.connect(activateAbility)
+	get_parent().set_preview_state.connect(setPreview)
+	
 
 func handleRightClick(position: Vector2):
 	if isPreviewing:
@@ -31,15 +33,16 @@ func handleTerrainClickEvent(position: Vector3):
 
 signal activate_player_ability(index: int)
 func activateAbility(index: int):
-	isPreviewing = true
 	activate_player_ability.emit(index)
 
 signal cancelAbility
 func emitCancelAbility():
-	isPreviewing = false
 	cancelAbility.emit()
 
 signal confirmAbility
 func emitConfirmAbility():
-	isPreviewing = false
 	confirmAbility.emit()
+
+func setPreview(to: bool):
+	print("Setting preview state")
+	isPreviewing = to
